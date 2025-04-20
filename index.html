@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>טופס פרטי נוסע - אמבולנס סביונים</title>
+
+  <!-- שיתוף לתצוגה מקדימה בלינקים -->
+  <meta property="og:title" content="טופס פרטי נוסע - אמבולנס סביונים" />
+  <meta property="og:description" content="מלאו את הפרטים לשליחת טופס נסיעה" />
+  <meta property="og:image" content="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aviver100.github.io/Savyonim/" />
+
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -67,7 +75,7 @@
     }
 
     .logo img {
-      max-width: 200px;
+      max-width: 150px;
       height: auto;
     }
 
@@ -130,7 +138,7 @@
 
       fetch('https://script.google.com/macros/s/AKfycbwPEf4fZYZf-GVbF995fnLgd99YaJ_7SBSXEvdJdggWsmDBjB_Tg3BOBm1zFHYyahca/exec', {
         method: 'POST',
-        mode: 'no-cors', // משמש כדי לעקוף CORS
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
