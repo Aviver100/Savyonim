@@ -77,20 +77,19 @@
       text-align: center;
     }
 
-    .image-wrapper {
+    .image-row {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 20px;
-      flex-wrap: wrap;
     }
 
-    .image-wrapper img {
+    .image-row img:first-child {
       max-height: 100px;
-      height: auto;
-      max-width: 45%;
-      border-radius: 12px;
-      object-fit: contain;
+    }
+
+    .image-row img:last-child {
+      max-height: 60px;
     }
 
     #waitTimeContainer {
@@ -98,26 +97,38 @@
     }
 
     @media (max-width: 600px) {
-      .form-box {
-        padding: 15px;
-      }
-
-      .image-wrapper {
+      .image-row {
         flex-direction: column;
       }
 
-      .image-wrapper img {
+      .image-row img {
         max-width: 80%;
       }
+    }
+
+    #loader {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2a5d84;
+    }
+
+    #successMsg {
+      display: none;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header-box">
-      <div class="image-wrapper">
+      <div class="image-row">
         <img src="1745179999550.png" alt="תמונת אמבולנס" />
-        <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו אמבולנס סביונים" />
+        <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו סביונים" />
       </div>
     </div>
 
@@ -125,10 +136,10 @@
       <h2>טופס מילוי פרטי נסיעה אמבולנס מס' רישוי - 786-85-703</h2>
       <form id="ambulanceForm">
         <label for="driverName">שם הנהג / נהגת</label>
-        <input type="text" id="driverName" name="שם הנהג" required />
+        <input type="text" id="driverName" name="שם הנהג / נהגת" required />
 
         <label for="driverId">מספר זהות נהג / נהגת</label>
-        <input type="text" id="driverId" name="מספר זהות נהג" required />
+        <input type="text" id="driverId" name="מספר זהות נהג / נהגת" required />
 
         <label for="kmStart">ק"מ יציאה</label>
         <input type="number" id="kmStart" name="ק\"מ יציאה" required />
@@ -136,7 +147,7 @@
         <label for="timeStart">שעת יציאה</label>
         <input type="time" id="timeStart" name="שעת יציאה" required />
 
-        <h3>פרטי הנוסע</h3>
+        <h3>פרטי הנוסע / נוסעת</h3>
 
         <label for="firstName">שם פרטי</label>
         <input type="text" id="firstName" name="שם פרטי" required />
@@ -191,14 +202,16 @@
         <input type="time" id="timeEnd" name="שעת חזרה" />
 
         <button type="submit">שלח</button>
+        <div id="loader">אנא המתן...</div>
+        <div id="successMsg">הנסיעה נרשמה בהצלחה!</div>
       </form>
-      <p id="successMsg" style="color: green; text-align: center; display: none;">הטופס נשלח בהצלחה!</p>
     </div>
   </div>
 
   <script>
     const form = document.getElementById('ambulanceForm');
     const successMsg = document.getElementById('successMsg');
+    const loader = document.getElementById('loader');
     const roundTripSelect = document.getElementById('roundTrip');
     const waitTimeContainer = document.getElementById('waitTimeContainer');
 
@@ -215,6 +228,9 @@
         data[key] = value;
       });
 
+      loader.style.display = 'block';
+      successMsg.style.display = 'none';
+
       fetch('https://script.google.com/macros/s/AKfycbyixngF-q2u_mXlpOsLnfpU0Nh6-fUOGDmc9wsqFRI/dev', {
         method: 'POST',
         mode: 'no-cors',
@@ -224,12 +240,14 @@
         body: JSON.stringify(data)
       }).then(() => {
         form.reset();
+        loader.style.display = 'none';
         waitTimeContainer.style.display = 'none';
         successMsg.style.display = 'block';
         setTimeout(() => {
           successMsg.style.display = 'none';
         }, 5000);
       }).catch(err => {
+        loader.style.display = 'none';
         alert('אירעה שגיאה בשליחה. נסה שוב.');
         console.error(err);
       });
