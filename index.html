@@ -68,14 +68,29 @@
       background-color: #1f4561;
     }
 
-    .logo {
-      text-align: center;
+    .header-box {
+      background-color: #ffffff;
+      border: 2px solid #2a5d84;
+      border-radius: 16px;
+      padding: 10px;
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    .logo img {
-      display: block;
-      margin: 0 auto 10px;
+    .image-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .image-wrapper img {
+      max-height: 100px;
+      height: auto;
+      max-width: 45%;
+      border-radius: 12px;
+      object-fit: contain;
     }
 
     #waitTimeContainer {
@@ -87,17 +102,23 @@
         padding: 15px;
       }
 
-      input, textarea, select {
-        font-size: 15px;
+      .image-wrapper {
+        flex-direction: column;
+      }
+
+      .image-wrapper img {
+        max-width: 80%;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="1745179999550.png" alt="תמונת אמבולנס" style="max-width: 100%; height: auto;" />
-      <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו אמבולנס סביונים" style="max-width: 150px;" />
+    <div class="header-box">
+      <div class="image-wrapper">
+        <img src="1745179999550.png" alt="תמונת אמבולנס" />
+        <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו אמבולנס סביונים" />
+      </div>
     </div>
 
     <div class="form-box">
@@ -105,6 +126,9 @@
       <form id="ambulanceForm">
         <label for="driverName">שם הנהג</label>
         <input type="text" id="driverName" name="שם הנהג" required />
+
+        <label for="driverId">מספר זהות נהג</label>
+        <input type="text" id="driverId" name="מספר זהות נהג" required />
 
         <label for="kmStart">ק"מ יציאה</label>
         <input type="number" id="kmStart" name="ק\"מ יציאה" required />
