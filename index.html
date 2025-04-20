@@ -227,23 +227,20 @@
       loader.style.display = 'block';
       successMsg.style.display = 'none';
 
-      fetch('https://script.google.com/macros/s/AKfycbz49pF-IGRAW2FuAyk09CM9D_TbQixZlU15tj7sI9A3vgkNqvE6191AqZ-v4fEOvMIV/exec', {
-        method: 'POST',
-        
-        body: formData
-      }).then(() => {
-        form.reset();
-        loader.style.display = 'none';
-        waitTimeContainer.style.display = 'none';
-        successMsg.style.display = 'block';
-        setTimeout(() => {
-          successMsg.style.display = 'none';
-        }, 5000);
-      }).catch(err => {
-        loader.style.display = 'none';
-        alert('אירעה שגיאה בשליחה. נסה שוב.');
-        console.error(err);
-      });
+      fetch('https://script.google.com/macros/s/AKfycbz49pF-.../exec', {
+  method: 'POST',
+  mode: 'no-cors',
+  body: formData
+}).then(() => {
+  loader.style.display = 'none';
+  successMsg.style.display = 'block';
+  form.reset();
+}).catch((err) => {
+  loader.style.display = 'none';
+  alert("שגיאה בשליחה");
+  console.error(err);
+});
+
     });
   </script>
 </body>
