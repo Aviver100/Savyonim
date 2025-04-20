@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>טופס נסיעה - אמבולנס סביונים</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      direction: rtl;
+    }
+    h2 {
+      text-align: center;
+      color: #444;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #125aa2;
+    }
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h2>טופס פרטי נוסע - אמבולנס סביונים</h2>
+  <form id="ambulanceForm">
+    <label>שם פרטי:<input type="text" name="firstName" required></label>
+    <label>שם משפחה:<input type="text" name="lastName" required></label>
+    <label>ת"ז:<input type="text" name="idNumber" required></label>
+    <label>תאריך לידה:<input type="date" name="birthDate" required></label>
+    <label>טלפון:<input type="tel" name="phone" required></label>
+    <label>כתובת:<input type="text" name="address" required></label>
+    <label>הערות נוספות:<textarea name="notes"></textarea></label>
+    <button type="submit">שלח</button>
+    <div class="success" id="successMsg"></div>
+  </form>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzcZmyWcIOOwWtZVor6-uop5WFqu6CGSLt8kfV54GR72SteEGMllHLDtPsPNNhUeKiy/exec";
+    const form = document.getElementById("ambulanceForm");
+    const msg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.text())
+      .then(text => {
+        msg.textContent = "הטופס נשלח בהצלחה!";
+        form.reset();
+      })
+      .catch(err => {
+        msg.textContent = "אירעה שגיאה בשליחה";
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
