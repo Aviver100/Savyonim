@@ -2,50 +2,187 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>טופס נסיעה</title>
+  <title>טופס נסיעה - אמבולנס סביונים</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial; padding: 20px; background: #f0f8ff; }
-    input, select, textarea, button { display: block; margin: 10px 0; width: 100%; padding: 10px; }
-    button { background: #2a5d84; color: white; border: none; cursor: pointer; }
-    #loader, #successMsg { display: none; text-align: center; margin-top: 10px; font-weight: bold; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #2a5d84;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .header img:first-child {
+      max-height: 80px;
+    }
+
+    .header img:last-child {
+      max-height: 60px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2a5d84;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #2a5d84;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #1f4561;
+    }
+
+    #loader, #successMsg {
+      display: none;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    #loader {
+      color: #2a5d84;
+    }
+
+    #successMsg {
+      color: green;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .header img {
+        max-width: 80%;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>טופס מילוי פרטי נסיעה</h2>
-  <form id="ambulanceForm">
-    <input name="שם הנהג / נהגת" placeholder="שם הנהג / נהגת" required>
-    <input name="מספר זהות נהג / נהגת" placeholder="מספר זהות נהג / נהגת" required>
-    <input name="ק&quot;מ יציאה" placeholder="ק\"מ יציאה" type="number" required>
-    <input name="שעת יציאה" placeholder="שעת יציאה" type="time" required>
-    <input name="שם פרטי" placeholder="שם פרטי" required>
-    <input name="שם משפחה" placeholder="שם משפחה" required>
-    <input name="נייד" placeholder="נייד" required>
-    <input name="ת.ז." placeholder="ת.ז." required>
-    <select name="קופת חולים" required>
-      <option value="">בחר קופה</option>
-      <option>כללית</option>
-      <option>מאוחדת</option>
-      <option>מכבי</option>
-      <option>לאומית</option>
-    </select>
-    <input name="כתובת" placeholder="כתובת">
-    <input name="מוצא" placeholder="מוצא">
-    <input name="יעד" placeholder="יעד">
-    <textarea name="מהות הנסיעה" placeholder="מהות הנסיעה"></textarea>
-    <select name="הלוך ושוב" id="roundTrip" required>
-      <option value="">בחר</option>
-      <option>כן</option>
-      <option>לא</option>
-    </select>
-    <div id="waitTimeContainer">
-      <input name="זמן המתנה" placeholder="זמן המתנה">
+  <div class="container">
+    <div class="header">
+      <img src="1745179999550.png" alt="תמונת אמבולנס" />
+      <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו סביונים" />
     </div>
-    <input name="ק&quot;מ חזרה" placeholder="ק\"מ חזרה" type="number">
-    <input name="שעת חזרה" placeholder="שעת חזרה" type="time">
-    <button type="submit">שלח</button>
-    <div id="loader">שולח נתונים...</div>
-    <div id="successMsg">הטופס נשלח בהצלחה!</div>
-  </form>
+
+    <h2>טופס מילוי פרטי נסיעה</h2>
+
+    <form id="ambulanceForm">
+      <label>שם הנהג / נהגת</label>
+      <input name="שם הנהג / נהגת" required>
+
+      <label>מספר זהות נהג / נהגת</label>
+      <input name="מספר זהות נהג / נהגת" required>
+
+      <label>ק"מ יציאה</label>
+      <input name="ק&quot;מ יציאה" type="number" required>
+
+      <label>שעת יציאה</label>
+      <input name="שעת יציאה" type="time" required>
+
+      <hr />
+
+      <label>שם פרטי</label>
+      <input name="שם פרטי" required>
+
+      <label>שם משפחה</label>
+      <input name="שם משפחה" required>
+
+      <label>נייד</label>
+      <input name="נייד" type="tel" required>
+
+      <label>ת.ז.</label>
+      <input name="ת.ז." required>
+
+      <label>קופת חולים</label>
+      <select name="קופת חולים" required>
+        <option value="">בחר</option>
+        <option>כללית</option>
+        <option>מאוחדת</option>
+        <option>מכבי</option>
+        <option>לאומית</option>
+        <option>אחר</option>
+      </select>
+
+      <label>כתובת</label>
+      <input name="כתובת">
+
+      <label>מוצא</label>
+      <input name="מוצא">
+
+      <label>יעד</label>
+      <input name="יעד">
+
+      <label>מהות הנסיעה</label>
+      <textarea name="מהות הנסיעה" rows="2"></textarea>
+
+      <label>הלוך ושוב</label>
+      <select name="הלוך ושוב" id="roundTrip" required>
+        <option value="">בחר</option>
+        <option>כן</option>
+        <option>לא</option>
+      </select>
+
+      <div id="waitTimeContainer" style="display: none;">
+        <label>זמן המתנה</label>
+        <input name="זמן המתנה">
+      </div>
+
+      <label>ק"מ חזרה</label>
+      <input name="ק&quot;מ חזרה" type="number">
+
+      <label>שעת חזרה</label>
+      <input name="שעת חזרה" type="time">
+
+      <button type="submit">שלח</button>
+      <div id="loader">שולח נתונים...</div>
+      <div id="successMsg">הטופס נשלח בהצלחה!</div>
+    </form>
+  </div>
 
   <script>
     const form = document.getElementById("ambulanceForm");
