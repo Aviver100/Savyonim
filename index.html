@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>טופס פרטי נוסע - אמבולנס סביונים</title>
+  <title>טופס נסיעה - אמבולנס סביונים</title>
 
-  <!-- שיתוף לתצוגה מקדימה בלינקים -->
-  <meta property="og:title" content="טופס פרטי נוסע - אמבולנס סביונים" />
-  <meta property="og:description" content="מלאו את הפרטים לשליחת טופס נסיעה" />
+  <meta property="og:title" content="טופס פרטי נסיעה - אמבולנס סביונים" />
+  <meta property="og:description" content="מלאו את פרטי הנסיעה" />
   <meta property="og:image" content="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aviver100.github.io/Savyonim/" />
@@ -79,6 +78,10 @@
       height: auto;
     }
 
+    #waitTimeContainer {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       .form-box {
         padding: 15px;
@@ -97,25 +100,70 @@
     </div>
 
     <div class="form-box">
-      <h2>טופס פרטי נוסע</h2>
+      <h2>טופס מילוי פרטי נסיעה אמבולנס מס' רישוי - 786-85-703</h2>
       <form id="ambulanceForm">
-        <label for="fullName">שם מלא</label>
-        <input type="text" id="fullName" name="שם מלא" required />
+        <label for="driverName">שם הנהג</label>
+        <input type="text" id="driverName" name="שם הנהג" required />
 
-        <label for="idNumber">תעודת זהות</label>
-        <input type="text" id="idNumber" name="תעודת זהות" required />
+        <label for="kmStart">ק"מ יציאה</label>
+        <input type="number" id="kmStart" name="ק"מ יציאה" required />
 
-        <label for="phone">טלפון</label>
-        <input type="tel" id="phone" name="טלפון" required />
+        <label for="timeStart">שעת יציאה</label>
+        <input type="time" id="timeStart" name="שעת יציאה" required />
+
+        <h3>פרטי הנוסע</h3>
+
+        <label for="firstName">שם פרטי</label>
+        <input type="text" id="firstName" name="שם פרטי" required />
+
+        <label for="lastName">שם משפחה</label>
+        <input type="text" id="lastName" name="שם משפחה" required />
+
+        <label for="phone">נייד</label>
+        <input type="tel" id="phone" name="נייד" required />
+
+        <label for="idNumber">ת.ז.</label>
+        <input type="text" id="idNumber" name="ת.ז." required />
+
+        <label for="kupatHolim">קופת חולים</label>
+        <select id="kupatHolim" name="קופת חולים" required>
+          <option value="">בחר</option>
+          <option>מאוחדת</option>
+          <option>כללית</option>
+          <option>מכבי</option>
+          <option>לאומית</option>
+          <option>אחר</option>
+        </select>
 
         <label for="address">כתובת</label>
         <input type="text" id="address" name="כתובת" />
 
-        <label for="destination">יעד הנסיעה</label>
-        <input type="text" id="destination" name="יעד" />
+        <label for="from">ממוצא</label>
+        <input type="text" id="from" name="ממוצא" />
 
-        <label for="notes">הערות נוספות</label>
-        <textarea id="notes" name="הערות"></textarea>
+        <label for="to">ליעד</label>
+        <input type="text" id="to" name="ליעד" />
+
+        <label for="purpose">מהות הנסיעה</label>
+        <textarea id="purpose" name="מהות הנסיעה"></textarea>
+
+        <label for="roundTrip">הלוך ושוב</label>
+        <select id="roundTrip" name="הלוך ושוב" required>
+          <option value="">בחר</option>
+          <option>כן</option>
+          <option>לא</option>
+        </select>
+
+        <div id="waitTimeContainer">
+          <label for="waitTime">זמן המתנה</label>
+          <input type="text" id="waitTime" name="זמן המתנה" />
+        </div>
+
+        <label for="kmEnd">ק"מ חזרה</label>
+        <input type="number" id="kmEnd" name="ק"מ חזרה" />
+
+        <label for="timeEnd">שעת חזרה</label>
+        <input type="time" id="timeEnd" name="שעת חזרה" />
 
         <button type="submit">שלח</button>
       </form>
@@ -126,6 +174,12 @@
   <script>
     const form = document.getElementById('ambulanceForm');
     const successMsg = document.getElementById('successMsg');
+    const roundTripSelect = document.getElementById('roundTrip');
+    const waitTimeContainer = document.getElementById('waitTimeContainer');
+
+    roundTripSelect.addEventListener('change', () => {
+      waitTimeContainer.style.display = roundTripSelect.value === 'כן' ? 'block' : 'none';
+    });
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -145,6 +199,7 @@
         body: JSON.stringify(data)
       }).then(() => {
         form.reset();
+        waitTimeContainer.style.display = 'none';
         successMsg.style.display = 'block';
         setTimeout(() => {
           successMsg.style.display = 'none';
