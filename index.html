@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>טופס נסיעה - אמבולנס סביונים</title>
-  <meta property="og:title" content="טופס נסיעה - אמבולנס סביונים" />
-<meta property="og:description" content="מלאו את פרטי הנסיעה לאמבולנס סביונים" />
-<meta property="og:image" content="https://aviver100.github.io/Savyonim/ambulance.png" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://aviver100.github.io/Savyonim/" />
-  <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>טופס נסיעה - אמבולנס סביונים</title>
+        <meta property="og:title" content="טופס נסיעה - אמבולנס סביונים" />
+        <meta property="og:description"
+            content="מלאו את פרטי הנסיעה לאמבולנס סביונים" />
+        <meta property="og:image"
+            content="https://aviver100.github.io/Savyonim/ambulance.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url"
+            content="https://aviver100.github.io/Savyonim/" />
+        <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f8ff;
@@ -110,94 +113,100 @@
       margin-top: 20px;
     }
   </style>
-</head>
-<body>
+    </head>
+    <body>
 
-  <div class="form-container">
-    <div class="image-row">
-      <img src="1745179999550.png" alt="תמונת אמבולנס" />
-      <img src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png" alt="לוגו סביונים" />
-    </div>
+        <div class="form-container">
+            <div class="image-row">
+                <img src="1745179999550.png" alt="תמונת אמבולנס" />
+                <img
+                    src="https://savyonim.org/wp-content/uploads/2023/10/logo-trans-300-380.png"
+                    alt="לוגו סביונים" />
+            </div>
 
-    <h2>טופס מילוי פרטי נסיעה אמבולנס מס' רישוי - 786-85-703</h2>
+            <h2>טופס מילוי פרטי נסיעה אמבולנס מס' רישוי - 786-85-703</h2>
 
-    <form id="ambulanceForm">
-      <label>שם הנהג / נהגת</label>
-      <input type="text" name="שם הנהג / נהגת" required>
+            <form id="ambulanceForm">
+                <label>שם הנהג / נהגת</label>
+                <input type="text" name="שם הנהג / נהגת" required>
 
-      <label>מספר זהות נהג / נהגת</label>
-      <input type="text" name="מספר זהות נהג / נהגת" required>
+                <label>מספר זהות נהג / נהגת</label>
+                <input type="text" name="מספר זהות נהג / נהגת" required>
 
-      <label>ק"מ יציאה - (לא חובה)</label>
-      <input type="number" name="קמ יציאה" >
+                <label>תאריך</label>
+                <input type="date" name="תאריך" >
 
-      <label>שעת יציאה</label>
-      <input type="time" name="שעת יציאה">
+                <label>ק"מ יציאה - (לא חובה)</label>
+                <input type="number" name="קמ יציאה">
 
-      <h3>פרטי הנוסע / נוסעת - (חולה)</h3>
+                <label>שעת יציאה</label>
+                <input type="time" name="שעת יציאה">
 
-      <label>שם פרטי</label>
-      <input type="text" name="שם פרטי" required>
+                <h3>פרטי הנוסע / נוסעת - (חולה)</h3>
 
-      <label>שם משפחה</label>
-      <input type="text" name="שם משפחה" required>
+                <label>שם פרטי</label>
+                <input type="text" name="שם פרטי" required>
 
-      <label>נייד</label>
-      <input type="tel" name="נייד" required>
+                <label>שם משפחה</label>
+                <input type="text" name="שם משפחה" required>
 
-      <label>ת.ז.</label>
-      <input type="text" name="ת.ז." required>
+                <label>נייד</label>
+                <input type="tel" name="נייד" required>
 
-      <label>קופת חולים</label>
-      <select name="קופת חולים" required>
-        <option value="">בחר</option>
-        <option>מאוחדת</option>
-        <option>כללית</option>
-        <option>מכבי</option>
-        <option>לאומית</option>
-        <option>אחר</option>
-      </select>
+                <label>ת.ז.</label>
+                <input type="text" name="ת.ז." required>
 
-      <label>כתובת</label>
-      <input type="text" name="כתובת">
+                <label>קופת חולים</label>
+                <select name="קופת חולים" required>
+                    <option value>בחר</option>
+                    <option>מאוחדת</option>
+                    <option>כללית</option>
+                    <option>מכבי</option>
+                    <option>לאומית</option>
+                    <option>אחר</option>
+                </select>
 
-      <label>מוצא</label>
-      <input type="text" name="מוצא">
+                <label>כתובת</label>
+                <input type="text" name="כתובת">
 
-      <label>יעד</label>
-      <input type="text" name="יעד">
+                <label>מוצא</label>
+                <input type="text" name="מוצא">
 
-      <label>מהות הנסיעה</label>
-      <textarea name="מהות הנסיעה"></textarea>
+                <label>יעד</label>
+                <input type="text" name="יעד">
 
-      <label>הלוך ושוב</label>
-      <select name="הלוך ושוב" id="roundTripSelect" required>
-        <option value="">בחר</option>
-        <option>כן</option>
-        <option>לא</option>
-      </select>
+                <label>מהות הנסיעה</label>
+                <textarea name="מהות הנסיעה"></textarea>
 
-      <div id="waitTimeContainer">
-        <label>זמן המתנה</label>
-        <input type="text" name="זמן המתנה">
-      </div>
+                <label>הלוך ושוב</label>
+                <select name="הלוך ושוב" id="roundTripSelect" required>
+                    <option value>בחר</option>
+                    <option>כן</option>
+                    <option>לא</option>
+                </select>
 
-      <label>ק"מ חזרה - (לא חובה)</label>
-      <input type="number" name="קמ חזרה">
+                <div id="waitTimeContainer">
+                    <label>זמן המתנה</label>
+                    <input type="text" name="זמן המתנה">
+                </div>
 
-      <label>שעת חזרה</label>
-      <input type="time" name="שעת חזרה">
+                <label>ק"מ חזרה - (לא חובה)</label>
+                <input type="number" name="קמ חזרה">
 
-      <button type="submit">שלח</button>
-      <div class="success-message" id="successMessage">הנסיעה נרשמה בהצלחה!</div>
-    </form>
-  </div>
+                <label>שעת חזרה</label>
+                <input type="time" name="שעת חזרה">
 
-  <div class="loading-popup" id="loadingPopup">
-    <div class="loading-content">הטופס נשלח... אנא המתן</div>
-  </div>
+                <button type="submit">שלח</button>
+                <div class="success-message" id="successMessage">הנסיעה נרשמה
+                    בהצלחה!</div>
+            </form>
+        </div>
 
-  <script>
+        <div class="loading-popup" id="loadingPopup">
+            <div class="loading-content">הטופס נשלח... אנא המתן</div>
+        </div>
+
+        <script>
     const form = document.getElementById('ambulanceForm');
     const loadingPopup = document.getElementById('loadingPopup');
     const successMessage = document.getElementById('successMessage');
@@ -230,5 +239,5 @@
       });
     });
   </script>
-</body>
+    </body>
 </html>
